@@ -1,0 +1,5 @@
+<div id="message_<%= message.id %>" class="message">
+  <strong><%= h(message.user&.email || "Guest") %>:</strong>
+  <div class="message-body"><%= simple_format(h(message.body)) %></div>
+  <small class="timestamp"><%= time_ago_in_words(message.created_at) %> ago</small>
+</div>

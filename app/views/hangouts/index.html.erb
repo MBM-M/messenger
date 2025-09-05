@@ -1,0 +1,18 @@
+<div>
+  <%= turbo_stream_from "messages" %>
+
+  <div id="message-display">
+    <%= render @messages %>
+  </div>
+</div>
+
+<%= form_with model: @message, local: false do |f| %>
+  <div class="field has-addons">
+    <div class="control">
+      <%= f.text_field :body, id: 'message-input', class: 'input' %>
+    </div>
+    <div class="control">
+      <%= f.submit 'Send Message', class: 'button is-primary', method: :post %>
+    </div>
+  </div>
+<% end %>
