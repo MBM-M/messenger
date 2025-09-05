@@ -53,4 +53,3 @@ Simple Rails chat/demo app using Rails 8 + Hotwire (Turbo/Stimulus), Devise, and
 - Container-friendly; see Gemfile (kamal) for Docker-oriented deployments.
 - Precompile assets for production and configure caching/adapter (Redis or database-backed).
 
-If you want, I can generate a starter CONTRIBUTING / deploy notes or update the README with exact environment-specific
