@@ -62,4 +62,4 @@ gem "bulma-rails", "~> 1.0"
 
 gem "dartsass-rails", "~> 0.5.1"
 
-gem "redis", "~> 4.0"
+gem "redis", "~> 5.4"
