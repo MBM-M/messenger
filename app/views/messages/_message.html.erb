@@ -1,19 +1,16 @@
 <% message_user = message.user %>
-<% is_own_message = defined?(current_user) && message_user&.id == current_user&.id %>
 
 <div id="message_<%= message.id %>"
-     class="message <%= is_own_message ? 'own-message' : 'other-message' %>"
+     class="message"
      data-message-user-id="<%= message_user&.id %>">
 
   <div class="message-bubble">
-    <% unless is_own_message %>
-      <div class="message-header">
-        <div class="message-avatar" style="background: <%= avatar_color(message_user) %>">
-          <%= avatar_initial(message_user) %>
-        </div>
-        <span class="message-user"><%= display_name(message_user) %></span>
+    <div class="message-header" style="display: none;">
+      <div class="message-avatar" style="background: <%= avatar_color(message_user) %>">
+        <%= avatar_initial(message_user) %>
       </div>
-    <% end %>
+      <span class="message-user"><%= display_name(message_user) %></span>
+    </div>
 
     <div class="message-body">
       <%= simple_format(h(message.body)) %>
