@@ -49,6 +49,30 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Testing framework
+  gem "rspec-rails", "~> 6.0"
+  # Test data generation
+  gem "factory_bot_rails", "~> 6.2"
+  # Fake data generation
+  gem "faker", "~> 3.2"
+end
+
+group :test do
+  # Integration testing
+  gem "capybara", "~> 3.40"
+  # Selenium driver for Capybara
+  gem "selenium-webdriver", "~> 4.16"
+  # One-liner matchers for common Rails functionality
+  gem "shoulda-matchers", "~> 5.3"
+  # Controller testing support for Rails 5+
+  gem "rails-controller-testing", "~> 1.0"
+  # HTTP request stubbing
+  gem "webmock", "~> 3.19"
+  # Code coverage reporting
+  gem "simplecov", "~> 0.22", require: false
+  # Database cleaning between tests
+  gem "database_cleaner-active_record", "~> 2.1"
 end
 
 group :development do
