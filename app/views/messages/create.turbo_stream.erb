@@ -1,0 +1,7 @@
+<%# Turbo Stream response for the message creator %>
+<%= turbo_stream.append "message-display" do %>
+  <%= render @message %>
+<% end %>
+
+<%# Clear the input field using a method call on the controller %>
+<%= turbo_stream.dispatch "clearInput", target: "chat" %>

@@ -1,47 +1,34 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["input", "counter", "count", "submit"]
+  static targets = ["counter"]
 
-  static values = {
-    maxLength: 1000
-  }
+  updateCounter(event) {
+    const input = event.target
+    const length = input.value.length
+    const maxLength = input.maxLength
+    const countSpan = document.getElementById('message-count')
 
-  connect() {
-    this.updateCounter()
-  }
-
-  updateCounter() {
-    const length = this.inputTarget.value.length
-    const remaining = this.maxLengthValue - length
-
-    this.countTarget.textContent = length
+    if (countSpan) {
+      countSpan.textContent = length
+    }
 
     this.counterTarget.classList.remove('warning', 'error')
 
-    if (remaining < 50) {
+    if (length > maxLength - 50) {
       this.counterTarget.classList.add('warning')
     }
 
-    if (remaining <= 0) {
+    if (length >= maxLength) {
       this.counterTarget.classList.add('error')
-      this.submitTarget.disabled = true
-    } else {
-      this.submitTarget.disabled = false
     }
   }
 
   validate(event) {
-    if (this.inputTarget.value.trim().length === 0) {
+    const input = document.getElementById('message-input')
+    if (input && input.value.trim().length === 0) {
       event.preventDefault()
-      this.inputTarget.focus()
-      return false
+      input.focus()
     }
-  }
-
-  submitAfterSend(event) {
-    this.inputTarget.value = ''
-    this.updateCounter()
-    this.inputTarget.focus()
   }
 }

@@ -27,7 +27,8 @@ RSpec.describe MessagesController, type: :controller do
       end
 
       it 'returns a successful response' do
-        post :create, params: { message: message_attributes }
+        post :create, params: { message: message_attributes }, as: :turbo_stream
+
         expect(response).to have_http_status(:success)
       end
     end

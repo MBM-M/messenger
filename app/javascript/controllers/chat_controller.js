@@ -38,6 +38,20 @@ export default class extends Controller {
     }
   }
 
+  clearInput() {
+    const input = document.getElementById('message-input')
+    const counter = document.getElementById('message-count')
+
+    if (input) {
+      input.value = ''
+      input.focus()
+    }
+
+    if (counter) {
+      counter.textContent = '0'
+    }
+  }
+
   scrollToBottom() {
     setTimeout(() => {
       const messagesContainer = this.messagesTarget
