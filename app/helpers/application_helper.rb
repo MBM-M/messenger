@@ -40,4 +40,9 @@ module ApplicationHelper
       time.strftime("%b %d, %I:%M %p")
     end
   end
+
+  # Check if user is logged in (safer than current_user)
+  def user_signed_in?
+    defined?(current_user) && current_user&.present?
+  end
 end

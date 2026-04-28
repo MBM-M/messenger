@@ -29,7 +29,8 @@ RSpec.describe 'Messaging System', type: :system do
       visit root_path
 
       expect(page).to have_content('Hello, world!')
-      expect(page).to have_content(user.email)
+      # Shows display name (part before @) for own messages
+      expect(page).to have_content(user.email.split('@').first.capitalize)
     end
 
     it 'displays message timestamps' do
@@ -38,7 +39,7 @@ RSpec.describe 'Messaging System', type: :system do
       visit root_path
 
       expect(page).to have_selector('.timestamp')
-      expect(page).to have_content('ago')
+      expect(page).to have_content('just now')
     end
 
     it 'shows messages from other users' do
@@ -47,7 +48,8 @@ RSpec.describe 'Messaging System', type: :system do
       visit root_path
 
       expect(page).to have_content('From other user')
-      expect(page).to have_content(other_user.email)
+      # Shows display name for other messages
+      expect(page).to have_content(other_user.email.split('@').first.capitalize)
     end
 
     it 'displays multiple messages' do
@@ -66,7 +68,9 @@ RSpec.describe 'Messaging System', type: :system do
       visit root_path
 
       expect(page).to have_current_path(new_user_session_path)
-      expect(page).to have_content('Login')
+      # Check for the new login page content
+      expect(page).to have_content('Welcome Back')
+      expect(page).to have_content('Sign in')
     end
   end
 end
