@@ -1,0 +1,52 @@
+<% content_for :title, "Login - Messenger" %>
+
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="auth-logo">
+        <i class="fas fa-comments"></i>
+      </div>
+      <h1 class="auth-title">Welcome Back</h1>
+      <p class="auth-subtitle">Sign in to continue to Messenger</p>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'auth-form' }) do |f| %>
+      <div class="field">
+        <label class="label">Email</label>
+        <div class="control has-icons-left">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input', placeholder: 'you@example.com' %>
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control has-icons-left">
+          <%= f.password_field :password, autocomplete: "current-password", class: 'input', placeholder: '••••••••' %>
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </div>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <label class="checkbox">
+            <%= f.check_box :remember_me %>
+            <span>Remember me</span>
+          </label>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.submit "Log in", class: 'button is-primary is-fullwidth' %>
+      </div>
+    <% end %>
+
+    <div class="auth-links">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

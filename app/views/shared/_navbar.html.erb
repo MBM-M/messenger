@@ -1,0 +1,51 @@
+<nav class="navbar is-primary is-fixed-top" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+      <%= link_to root_path, class: 'navbar-item' do %>
+        <span class="icon is-medium mr-2">
+          <i class="fas fa-comments fa-lg"></i>
+        </span>
+        <span class="title is-5 has-text-weight-bold">Messenger</span>
+      <% end %>
+
+      <a role="button" class="navbar-burger" data-target="navbarMenu" aria-label="menu" aria-expanded="false" data-controller="navbar" data-action="click->navbar#toggle">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <%= link_to root_path, class: 'navbar-item' do %>
+          <span class="icon mr-2"><i class="fas fa-home"></i></span>
+          Chat
+        <% end %>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            <span class="icon mr-2">
+              <i class="fas fa-user-circle"></i>
+            </span>
+            <span class="username-truncate"><%= display_name(current_user) %></span>
+          </a>
+
+          <div class="navbar-dropdown">
+            <div class="navbar-item has-text-grey is-size-7">
+              <%= current_user.email %>
+            </div>
+            <hr class="navbar-divider">
+            <%= button_to destroy_user_session_path, method: :delete, class: 'navbar-item has-text-danger' do %>
+              <span class="icon mr-2"><i class="fas fa-sign-out-alt"></i></span>
+              Logout
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="navbar-spacer"></div>

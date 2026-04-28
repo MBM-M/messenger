@@ -1,18 +1,41 @@
-<div>
+<% content_for :title, "Chat - Messenger" %>
+
+<div class="chat-container" data-controller="chat" data-chat-user-id="<%= current_user.id %>">
   <%= turbo_stream_from "messages" %>
 
-  <div id="message-display">
-    <%= render @messages %>
+  <div id="message-display" data-chat-target="messages">
+    <% if @messages.any? %>
+      <%= render @messages %>
+    <% else %>
+      <div class="empty-state">
+        <i class="fas fa-comments empty-icon"></i>
+        <p class="empty-text">No messages yet. Start the conversation!</p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="message-input-container">
+    <%= form_with model: @message, local: false, data: { turbo_frame: '_top', controller: 'message-form', action: 'submit->message-form#validate' } do |f| %>
+      <div class="field has-addons">
+        <div class="control is-expanded">
+          <%= f.text_field :body,
+              id: 'message-input',
+              class: 'input',
+              placeholder: 'Type your message...',
+              maxlength: 1000,
+              data: { message_form_target: 'input', action: 'input->message-form#updateCounter' } %>
+        </div>
+        <div class="control">
+          <%= f.submit class: 'button is-primary',
+              data: { message_form_target: 'submit' } do %>
+            <span class="icon mr-1"><i class="fas fa-paper-plane"></i></span>
+            <span>Send</span>
+          <% end %>
+        </div>
+      </div>
+      <div class="character-counter" data-message-form-target="counter">
+        <span data-message-form-target="count">0</span> / 1000
+      </div>
+    <% end %>
   </div>
 </div>
-
-<%= form_with model: @message, local: false do |f| %>
-  <div class="field has-addons">
-    <div class="control">
-      <%= f.text_field :body, id: 'message-input', class: 'input' %>
-    </div>
-    <div class="control">
-      <%= f.submit 'Send Message', class: 'button is-primary', method: :post %>
-    </div>
-  </div>
-<% end %>

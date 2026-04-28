@@ -1,3 +1,146 @@
 // Sassy
 @use "bulma";
-@import "./hangouts.scss"
+
+// Import custom styles
+@import "./hangouts.scss";
+
+// ============================================
+// Global Enhancements
+// ============================================
+
+// Smooth transitions for all interactive elements
+button, a, .button {
+  transition: all 0.2s ease;
+}
+
+// Better focus states for accessibility
+input:focus, textarea:focus, select:focus {
+  outline: none;
+}
+
+// Improve Bulma navbar
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+// Custom button styles
+.button.is-primary {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border: none;
+
+  &:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  }
+}
+
+// Loading spinner
+.spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// ============================================
+// Devise Authentication Pages
+// ============================================
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 1rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 2.5rem;
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  .auth-logo {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: white;
+    font-size: 1.5rem;
+  }
+
+  .auth-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+  }
+
+  .auth-subtitle {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+}
+
+.auth-form {
+  .input {
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+
+    &:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+  }
+
+  .button {
+    border-radius: 10px;
+    padding: 0.75rem;
+    font-weight: 600;
+  }
+}
+
+.auth-links {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+
+  a {
+    color: #3b82f6;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
